@@ -1,3 +1,5 @@
+# chainlit run solutions/langchain/chainlit_with_langchain.py
+
 import chainlit as cl
 from langchain.callbacks.base import BaseCallbackHandler
 from langchain.chains import LLMChain
@@ -38,7 +40,7 @@ User:
 prompt = PromptTemplate(template=template, input_variables=["context", "instruction"])
 
 
-@cl.on_chat_start
+@cl.on_chat_start  # in on_chat_start, for every user will be dedicated services like memory or ...
 def on_chat_start():
     memory = ConversationBufferMemory(memory_key="context")
     llm_chain = LLMChain(prompt=prompt, llm=llm, verbose=False, memory=memory)
